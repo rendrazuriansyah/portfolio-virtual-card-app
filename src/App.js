@@ -1,5 +1,28 @@
 import "./App.css";
 
+const socialMedia = [
+	{
+		icon: "fa-facebook-f",
+		href: "https://www.facebook.com/profile.php?id=100078075274227",
+	},
+	{
+		icon: "fa-instagram",
+		href: "https://instagram.com/twingqywingqy",
+	},
+	{
+		icon: "fa-twitter",
+		href: "https://x.com/twingqywingqy",
+	},
+	{
+		icon: "fa-linkedin",
+		href: "https://www.linkedin.com/in/abdullahrendrazuriansyah/",
+	},
+	{
+		icon: "fa-github",
+		href: "https://github.com/rendrazuriansyah",
+	},
+];
+
 function App() {
 	return (
 		<>
@@ -17,25 +40,36 @@ function App() {
 	);
 }
 
-function SocialButton({ icon }) {
+function SocialButton({ icon, link }) {
 	return (
-		<button>
+		<button onClick={() => window.open(link, "_blank")}>
 			<i className={`fab ${icon}`}></i>
 		</button>
 	);
 }
 
 function Header() {
+	const middleIndex = Math.floor(socialMedia.length / 1.5);
+	const socialLeft = socialMedia.slice(0, middleIndex);
+	const socialRight = socialMedia.slice(middleIndex);
+
 	return (
 		<>
 			<div className="social-buttons">
-				<SocialButton icon="fa-facebook-f" />
-				<SocialButton icon="fa-instagram" />
-				<SocialButton icon="fa-twitter" />
+				{socialLeft.map((data) => (
+					<SocialButton
+						icon={data.icon}
+						link={data.href}
+					/>
+				))}
 			</div>
 			<div className="social-buttons right">
-				<SocialButton icon="fa-linkedin" />
-				<SocialButton icon="fa-github" />
+				{socialRight.map((data) => (
+					<SocialButton
+						icon={data.icon}
+						link={data.href}
+					/>
+				))}
 			</div>
 		</>
 	);
